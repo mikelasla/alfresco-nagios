@@ -15,11 +15,11 @@ ENV ICINGA_CONFIG="/etc/icinga/objects" ICINGA_PLUGIN="/usr/lib/nagios/plugins" 
 ##
 ## Environment declaration
 ## 
-ENV ALF_HOST="@@ALF_HOST@@" ALF_PORT="@@ALF_PORT@@" ALF_USER="@@ALF_USER@@" ALF_PASS="@@ALF_PASS@@" \ 
-JMXPROXY_USER="@@JMXPROXY_USER@@" JMXPROXY_PASS="@@JMXPROXY_PASS@@" JMX_USER="@@JMX_USER@@" JMX_PASS="@@JMX_PASS@@" \
-ASS_HOST="@@ASS_HOST@@" ASS_PORT="@@ASS_PORT@@"
+ENV MODE="CE" ALF_HOST="alfresco" ALF_PORT="8080" ALF_USER="admin" ALF_PASS="admin" \ 
+JMXPROXY_USER="monitor_role" JMXPROXY_PASS="change_asap" JMX_USER="monitor_role" JMX_PASS="change_asap" \
+ASS_HOST="solr6" ASS_PORT="8983"
 
-##
+##	
 ## Icinga Installation
 ##
 RUN set -x \
@@ -82,4 +82,5 @@ RUN set -x \
 	&& chmod +x /entrypoint.sh	
 
 EXPOSE 80
-ENTRYPOINT ["/entrypoint.sh", "run"]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["run"]
